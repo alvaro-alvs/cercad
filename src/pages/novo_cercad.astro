@@ -6,8 +6,8 @@ import { CercadForm } from "../components/CercadForm"
 ---
 
 <Layout title="CERCAD - Novo Pedido">
-    <PageProvider client:component-hydration>
-        <header class="flex justify-center w-full p-2 px-5 border border-black rounded-b-xl hover:bg-teal-100 cursor-pointer shadow-lg transition">
+    <PageProvider>
+        <header class="flex justify-center w-32 p-2 px-5 border border-black rounded-b-xl hover:bg-teal-100 cursor-pointer shadow-lg transition">
             
             <a href="/sobre/"> Sobre </a>
             
@@ -17,7 +17,7 @@ import { CercadForm } from "../components/CercadForm"
             Bem Vindo(a) ao Portal CERCAD
         </h1>
     
-        <CercadForm client:only />
+        <CercadForm client:load />
     
         <SobreInfo isPage={false} />
     

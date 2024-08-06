@@ -19,11 +19,16 @@ export const CercadInput: React.FC<CercadInputProps> = ({ field, label, placehol
         try {
             const target = e.target as HTMLInputElement | HTMLTextAreaElement;
 
+            if (field === 'cep') {
+                setFormData({ ...formData, cep: target.value.replace(/\D/g, '') })
+            }
+
             if (field === 'demanda') {
                 setFormData({ ...formData, demanda: target.value })
             } else {
                 setFormData({ ...formData, [field]: target.value })
             }
+
         } catch (e) {
             console.error(e);
 

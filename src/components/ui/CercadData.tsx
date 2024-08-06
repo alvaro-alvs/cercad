@@ -24,7 +24,7 @@ export const CercadData = () => {
             </header>
 
 
-            <div className="grid w-[30rem] py-10 space-y-10">
+            <div className="grid w-[32rem] py-10 space-y-10">
                 <fieldset className="border rounded border-black p-5 space-y-3">
                     <legend className="text-xl px-5">
                         Seus Dados
