@@ -1,0 +1,11 @@
+---
+import PageProvider from "../components/PageProvider.astro";
+import SobreInfo from "../components/SobreInfo.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Sobre o CERCAD">
+    <PageProvider client:load>
+        <SobreInfo isPage={true} client:load />
+    </PageProvider>
+</Layout>

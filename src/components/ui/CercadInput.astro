@@ -1,0 +1,6 @@
+---
+const { placeholder, label, field } = Astro.props;
+---
+
+<label class="text-lg" for={field}> {label} </label>
+<input class='h-12 rounded border border-teal-200 px-3' id={field} name={field} type="text" placeholder={placeholder} />

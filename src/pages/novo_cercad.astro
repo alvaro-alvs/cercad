@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageProvider from "../components/PageProvider.astro"
+import SobreInfo from "../components/SobreInfo.astro"
+import { CercadForm } from "../components/CercadForm"
+---
+
+<Layout title="CERCAD - Novo Pedido">
+    <PageProvider client:component-export>
+        <header class="flex justify-center w-full p-2 px-5 border border-black rounded-b-xl hover:bg-teal-100 cursor-pointer shadow-lg transition">
+            
+            <a href="/sobre/"> Sobre </a>
+            
+        </header>
+
+        <h1 class="my-12 text-center text-4xl font-thin">
+            Bem Vindo(a) ao Portal CERCAD
+        </h1>
+    
+        <CercadForm client:load />
+    
+        <SobreInfo isPage={false} />
+    
+    </PageProvider>
+</Layout>

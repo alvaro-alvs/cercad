@@ -1,0 +1,74 @@
+---
+import { IoIosArrowDown } from "react-icons/io";
+const { isPage } = Astro.props;
+---
+
+<header class="flex flex-col item-center mt-24 space-y-5">
+    <h1 class="flex justify-center text-4xl text-center">Saiba Mais</h1>
+
+    {
+        isPage ? (
+            <a
+                class="text-center underline border p-2 rounded border-teal-500"
+                href="javascript:history.back()"
+            >
+                Voltar
+            </a>
+        )
+        :
+        <IoIosArrowDown className="w-8 h-8 mx-auto animate-bounce" />
+    }
+</header>
+
+<article class="max-sm:w-full w-1/2 mt-24 max-sm:mt-10 mb-20 border border-black rounded p-5 shadow">
+    <div>
+        <h2 class="text-3xl">
+            Conheça um pouco mais das Subprefeituras da Cidade de São Paulo
+        </h2>
+
+        <div>
+            <h2 class="text-center max-sm:text-left">
+                As Subprefeituras têm o papel de receber pedidos e reclamações da
+                população, solucionar os problemas apontados
+            </h2>
+
+            <br />
+            <br />
+
+            <small class="italic">
+                Poucas pessoas sabem, mas São Paulo possui 32 pequenos
+                "municípios" distribuídos pela cidade. Desde 2002, com a
+                aprovação da lei 13.399, a maioria dos equipamentos públicos,
+                como clubes da comunidade (antigos Clubes Desportivos Municipais
+                - CDMs) e clubes da cidade foram transferidos para as
+                Subprefeituras.
+            </small>
+
+            <br />
+            Este Portal Abrange o dominio da Cidade Ademar
+
+        </div>
+        <br />
+        
+        <p>
+            As Subprefeituras têm o papel de receber pedidos e reclamações da
+            população, solucionar os problemas apontados; preocupam-se com a
+            educação, saúde e cultura de cada região, tentando sempre promover
+            atividades para a população.
+        </p>
+        <br />
+        <p>
+            Além disso, elas cuidam da manutenção do sistema viário, da rede de
+            drenagem, limpeza urbana, vigilância sanitária e epidemiológica,
+            entre outros papéis que transformam, a cada dia, essas regiões da
+            cidade em locais mais humanizados e cheios de vida.
+        </p>
+
+        <br>
+
+        <blockquote class="flex space-x-1 justify-center items-center text-sm font-bold text-center">
+            <p class="text-md font-bold text-center"> Fonte: </p>
+            <a class="text-xs" target="_blank" href="https://www.prefeitura.sp.gov.br/cidade/secretarias/subprefeituras/subprefeituras/index.php?p=8978#:~:text=para%20as%20Subprefeituras.-,As%20Subprefeituras%20t%C3%AAm%20o%20papel%20de%20receber%20pedidos%20e%20reclama%C3%A7%C3%B5es,promover%20atividades%20para%20a%20popula%C3%A7%C3%A3o."> Prefeitura de São Paulo - Subprefeituras </a>
+        </blockquote>
+    </div>
+</article>
