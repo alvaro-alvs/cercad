@@ -1,13 +1,31 @@
-import { useContext } from "react"
+import { ValidateFormData } from "@/services/validator"
+import { useContext, useEffect } from "react"
 import { CercadFormContext } from "../providers/CercadFormProvider"
 import { CercadInput } from "./CercadInput"
+import { PostCercad } from "@/services/api"
 
 export const CercadData = () => {
-    const { formData } = useContext(CercadFormContext)
+    const { formData, validation, setValidation } = useContext(CercadFormContext)
 
     const handleSubmit = () => {
+
+        try {
+            PostCercad(formData)
+            
+        } catch (e) {
+            console.error(e);
+        }
+
+        ValidateFormData(formData, validation, setValidation)
+
         console.log(formData)
+        console.log('Validação: ', validation);
+
     }
+
+    useEffect(() => {
+
+    }, [formData])
 
     return (
         <div
@@ -35,6 +53,8 @@ export const CercadData = () => {
                     <CercadInput placeholder="CEP da sua residencia" label="CEP" field="cep" value={formData.cep} />
 
                     <CercadInput placeholder="Endereço" label="Endereço (Rua, Avenida)" field="end" value={formData.end} disabled />
+
+                    <CercadInput placeholder="Bairro" label="Bairro: " field="bairro" value={formData.bairro} />
                 </fieldset>
 
                 <fieldset className="border rounded border-black p-5 space-y-3">
@@ -50,7 +70,7 @@ export const CercadData = () => {
 
                 {/* //todo Adicionar campos: OBS: e Grato */}
 
-                {formData?.membro && <p>{formData?.membro}</p>}
+                {/* {formData?.membro && <p>{formData?.membro}</p>} */}
 
             </div>
 

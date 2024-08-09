@@ -1,25 +1,21 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import PageProvider from "@/components/providers/PageProvider"
-import SobreInfo from "../components/SobreInfo.astro"
-import { CercadForm } from "../components/CercadForm"
+import Layout from "../layouts/Layout.astro";
+import PageProvider from "@/components/providers/PageProvider";
+import SobreInfo from "../components/SobreInfo.astro";
+import { CercadForm } from "../components/CercadForm";
+import CercadHeader from '../components/ui/CercadHeader.astro';
 ---
 
 <Layout title="CERCAD - Nova Petição">
     <PageProvider>
-        <header class="flex justify-center w-32 p-2 px-5 border border-black rounded-b-xl hover:bg-teal-100 cursor-pointer shadow-lg transition">
-            
-            <a href="/sobre/"> Sobre </a>
-            
-        </header>
+        <CercadHeader />
 
         <h1 class="my-12 text-center text-4xl font-thin">
             Bem Vindo(a) ao Portal CERCAD
         </h1>
-    
+
         <CercadForm client:load />
-    
+
         <SobreInfo isPage={false} />
-    
     </PageProvider>
 </Layout>
