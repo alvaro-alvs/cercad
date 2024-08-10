@@ -1,32 +1,59 @@
 import { ValidateFormData } from "@/services/validator"
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CercadFormContext } from "../providers/CercadFormProvider"
 import { CercadInput } from "./CercadInput"
 import { PostCercad } from "@/services/api"
+import { FaCheck } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 
 export const CercadData = () => {
-    const { formData, validation, setValidation } = useContext(CercadFormContext)
+    const [status, setStatus] = useState('idle')
+    const { formData, setFormData, validation, setValidation } = useContext(CercadFormContext)
 
-    const handleSubmit = () => {
-
+    const handleSubmit = async () => {
         try {
-            PostCercad(formData)
+            const res = await PostCercad(formData);
+
+            console.log(res);
             
+
+            if (res && res.membro === formData.membro) {
+                // console.log('Pedido Enviado');
+                
+                
+                setFormData({
+                    membro: '',
+                    cep: '',
+                    end: '',
+                    bairro: '',
+                    demanda: '',
+                    obs: ''
+                });
+            }
+
         } catch (e) {
             console.error(e);
         }
+        
+        // Validação do formulário após a tentativa de envio
+        ValidateFormData(formData, validation, setValidation);
 
-        ValidateFormData(formData, validation, setValidation)
+        const allFalse = Object.values(validation).every(value => value === false)
 
-        console.log(formData)
-        console.log('Validação: ', validation);
+        if (allFalse) {
+            setStatus('enviado');
+        }
 
-    }
+        // console.log(formData);
+        // console.log('Validação: ', validation);
+    };
 
     useEffect(() => {
 
     }, [formData])
 
+    console.log(status);
+    
     return (
         <div
             className="max-w-screen-xl mx-auto p-10 rounded-xl border border-teal-400 bg-zinc-500/45 shadow-xl"
@@ -74,10 +101,33 @@ export const CercadData = () => {
 
             </div>
 
-            <button onClick={() => handleSubmit()}
-                className="text-xl border border-slate-700 w-full p-3 active:bg-slate-100"
+            <button
+
+                onClick={status === 'idle' ? () => handleSubmit() : () => { }}
+                className={`text-xl border border-slate-700 w-full p-3 active:bg-slate-100 transition ${status === 'enviado' && 'bg-green-600 border-green-500 active:bg-red-300 active:ring active:ring-red-500 active:border-none'}`}
             >
-                Enviar
+                {status === 'enviado' ? (
+                    <span className="flex items-center justify-center space-x-3 text-white">
+                        <FaCheck className="fill-white" />
+                        <p>
+                            Enviado
+                        </p>
+                    </span>
+                ) : 'Enviar'}
+            </button>
+
+            {status === 'enviado' && (
+                <button
+                    onClick={() => {setStatus('idle'), setFormData({bairro: '', cep: '', demanda: '', end: '', membro: '', obs: ''})}}
+                    className={`flex items-center justify-center space-x-3 mt-10 text-xl border border-slate-700 w-full p-3 active:bg-slate-100 transition ${status === 'enviado' && 'bg-sky-500 text-white border-sky-300 active:bg-green-300 active:ring active:ring-green-500 active:border-none'}`}
+                >
+                    <FaPlus className="mr-3" />
+                    <p> Novo Pedido </p>
+                </button>
+            )}
+
+            <button onClick={() => setStatus('enviado')}>
+                ativar envio
             </button>
         </div>
     )

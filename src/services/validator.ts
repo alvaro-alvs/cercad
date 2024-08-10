@@ -4,7 +4,7 @@ import type { FormDataType, ValidationDataType } from "@/types/CercadTypes";
 export const ValidateFormData = (
     data: FormDataType, 
     validation: ValidationDataType, 
-    setValidation: React.Dispatch<React.SetStateAction<ValidationDataType>>
+    setValidation: React.Dispatch<React.SetStateAction<ValidationDataType>>,
 ) => {
     const newValidation = {
         membro: data.membro.length < 2,
