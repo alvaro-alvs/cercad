@@ -1,10 +1,57 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PageProvider from "@/components/PageProvider.astro";
+import { demandasCercad } from "@/services/data";
+import { CercadDemandaCard } from "@/components/ui/CercadDemandaCard";
+import { MdHomeFilled } from "react-icons/md";
+
+// const response = await fetch("https://oxx-three.vercel.app/cercad/demandas/", {
+//     headers: {
+//         "api-key": "xUp2jAz5hQZM#wCsKb",
+//     },
+// });
+
+// const demandasCercad = await response.json();
+
+// console.log(demandasCercad);
 ---
 
-<Layout title="Comunidade CERCAD - Conselho Eclesiastico Regional da Cidade Ademar">
+<Layout
+    title="Comunidade CERCAD - Conselho Eclesiastico Regional da Cidade Ademar"
+>
     <PageProvider>
-        Comunidade
+        <a href="javascript:history.back()" class="flex space-x-3 items-center text-xl font-thin rounded-b-lg border border-black p-3">
+            <MdHomeFilled />
+            <p>
+                Comunidade Cercad
+            </p>
+        </a>
+
+        <header class="flex items-center h-24">
+            <h2 class="text-4xl">Demandas Cidade Ademar</h2>
+        </header>
+
+        <section
+            class="cercad-wpp w-full grid grid-cols-2 items-center justify-items-center gap-10 rounded p-10 shadow-xl backdrop-blur-sm"
+        >
+            {
+                demandasCercad &&
+                    demandasCercad.map((demanda: any) => (
+                        <CercadDemandaCard demanda={demanda} />
+                    ))
+            }
+        </section>
     </PageProvider>
 </Layout>
+<style>
+    .demanda-box::-webkit-scrollbar {
+        display: none;
+    }
+    .cercad-wpp {
+        background: url("/sp.jpg");
+        backdrop-filter: blur(10px);
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+</style>
