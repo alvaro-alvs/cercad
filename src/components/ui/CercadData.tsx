@@ -126,9 +126,9 @@ export const CercadData = () => {
                 </button>
             )}
 
-            <button onClick={() => setStatus('enviado')}>
+            {/* <button onClick={() => setStatus('enviado')}>
                 ativar envio
-            </button>
+            </button> */}
         </div>
     )
 }
